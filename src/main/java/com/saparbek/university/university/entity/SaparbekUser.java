@@ -27,7 +27,7 @@ public class SaparbekUser {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private SaparbekRole role;
 
     @OneToMany(mappedBy = "student")
     private List<SaparbekEnrollment> enrollments;
