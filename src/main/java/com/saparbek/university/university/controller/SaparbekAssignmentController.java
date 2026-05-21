@@ -2,6 +2,7 @@ package com.saparbek.university.university.controller;
 
 import com.saparbek.university.university.dto.SaparbekAssignmentDto;
 import com.saparbek.university.university.service.SaparbekAssignmentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class SaparbekAssignmentController {
     }
 
     @PostMapping
-    public ResponseEntity<SaparbekAssignmentDto> createAssignment(@RequestBody SaparbekAssignmentDto dto) {
+    public ResponseEntity<SaparbekAssignmentDto> createAssignment(@Valid @RequestBody SaparbekAssignmentDto dto) {
         return ResponseEntity.ok(assignmentService.createAssignment(dto));
     }
 

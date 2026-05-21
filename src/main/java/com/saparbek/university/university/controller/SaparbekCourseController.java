@@ -2,6 +2,7 @@ package com.saparbek.university.university.controller;
 
 import com.saparbek.university.university.dto.SaparbekCourseDto;
 import com.saparbek.university.university.service.SaparbekCourseService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,13 +29,13 @@ public class SaparbekCourseController {
     }
 
     @PostMapping
-    public ResponseEntity<SaparbekCourseDto> createCourse(@RequestBody SaparbekCourseDto dto) {
+    public ResponseEntity<SaparbekCourseDto> createCourse(@Valid @RequestBody SaparbekCourseDto dto) {
         return ResponseEntity.ok(courseService.createCourse(dto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<SaparbekCourseDto> updateCourse(@PathVariable Long id,
-                                                          @RequestBody SaparbekCourseDto dto) {
+                                                          @Valid @RequestBody SaparbekCourseDto dto) {
         return ResponseEntity.ok(courseService.updateCourse(id, dto));
     }
 

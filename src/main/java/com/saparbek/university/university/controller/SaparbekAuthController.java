@@ -5,6 +5,7 @@ import com.saparbek.university.university.entity.SaparbekRole;
 import com.saparbek.university.university.entity.SaparbekUser;
 import com.saparbek.university.university.repository.SaparbekUserRepository;
 import com.saparbek.university.university.security.SaparbekJwtUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
@@ -23,7 +24,7 @@ public class SaparbekAuthController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody SaparbekAuthRequest request) {
+    public ResponseEntity<String> register(@Valid @RequestBody SaparbekAuthRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             return ResponseEntity.badRequest().body("Username already exists");
         }
@@ -38,7 +39,7 @@ public class SaparbekAuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody SaparbekAuthRequest request) {
+    public ResponseEntity<String> login(@Valid @RequestBody SaparbekAuthRequest request) {
         Authentication auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(), request.getPassword()));
